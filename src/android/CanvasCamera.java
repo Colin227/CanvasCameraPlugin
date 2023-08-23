@@ -63,7 +63,7 @@ public class CanvasCamera extends CordovaPlugin implements CanvasCameraInterface
     private static final int SEC_CAMERA_POSITION = 3;
 
     private final static String[] FILENAMES = {"fullsize", "thumbnail"};
-    private final static String[] PERMISSIONS = {Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private final static String[] PERMISSIONS =  (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) ? new String[] {Manifest.permission.CAMERA} : new String[] {Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     protected int mFps;
     protected int mWidth;
