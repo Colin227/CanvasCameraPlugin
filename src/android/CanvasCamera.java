@@ -412,8 +412,9 @@ public class CanvasCamera extends CordovaPlugin implements CanvasCameraInterface
         mCurrentCallbackContext = callbackContext;
 
         if (PermissionHelper.hasPermission(this, Manifest.permission.CAMERA) &&
-                PermissionHelper.hasPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) &&
-                PermissionHelper.hasPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                ((PermissionHelper.hasPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) &&
+                PermissionHelper.hasPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) ||
+                android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU)) {
             if ("startCapture".equals(action)) {
                 if (LOGGING) Log.i(TAG, "Starting async startCapture thread...");
                 mActivity.runOnUiThread(new Runnable() {
